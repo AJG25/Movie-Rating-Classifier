@@ -59,6 +59,6 @@ Tools & Technologies
 
 ## Performance
 
--Validation Accuracy: 80.0%
+- Validation Accuracy: 80.0%
 
 Outperforms random and baseline models
