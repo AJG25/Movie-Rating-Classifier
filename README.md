@@ -1,64 +1,46 @@
 # Movie-Rating-Classifier
 
 ## Project Overview
-This project develops a binary classifier to distinguish between highly-rated and low-rated movies based on structured metadata and textual features. The dataset includes information such as title, release year, runtime, number of votes, and details about writers and directors. The goal of the analysis is to predict whether a movie is highly rated based on features like title, release year, runtime, votes, writers, and directors.
+Developed a binary classifier to distinguish between highly-rated and low-rated movies based on metadata and textual features. The model uses features such as title, release year, runtime, votes, writers, directors, genre, and sentiment from movie overviews and taglines.
 
-## Data
-The dataset includes:
+---
 
-- Movie Metadata: Title, release year, runtime, number of votes, writers, and directors
+## Technologies
+- Python (pandas, DuckDB, glob)
+- ML: scikit-learn, XGBoost, Optuna
+- NLP: SentenceTransformers, TextBlob, TF-IDF, PCA
 
-- Credits: Writers and directors
+---
 
-## Custom Engineered Features:
+## Data & Features
+- **Movie Metadata:** Title, release year, runtime, votes, writers, directors
+- **Credits:** Writers and directors
+- **Custom Features:**
+  - Sentiment: Polarity & subjectivity from overview and tagline
+  - Genre: Multi-genre encoding, weighted, PCA-reduced
+  - Temporal: Movie age, seasonal trends
+  - Director/Writer metrics: Expertise, top-10 flags
+  - Text embeddings: Title embeddings, length, keyword flags
 
-- Sentiment Features: Overview and tagline for sentiment analysis
+---
 
-- Genre Information: Multi-genre encoding, popularity-based weighting and PCA reduction
+## Modeling & Pipeline
+- Unified ingestion and train/validation/test splits
+- Robust data cleaning and KNN imputation for sparse features
+- Feature scaling with StandardScaler
+- XGBoost and RandomForest models, optimized via Optuna and Grid Search
+- Hyperparameter tuning and cross-validation for model robustness
 
-- Temporal Features: Movie age, seasonal effects, and trends over time
+---
 
-These additional features were created to enhance the predictive signal beyond the raw metadata.
+## Results & Conclusions
+- Validation Accuracy: 80%  
+- Outperforms baseline models
+- Feature engineering and NLP features significantly improved predictive power
+- Demonstrates ability to combine structured and unstructured data in a unified ML pipeline
 
-## Pipeline Summary
-Tools & Technologies
 
-- Data Handling: DuckDB, pandas, glob
+**Outperforms random and baseline models**
 
-- ML Libraries: scikit-learn, XGBoost, Optuna
 
-- NLP & Embeddings: SentenceTransformers, TextBlob, TF-IDF, PCA
 
-## Data Processing
-
-- Unified ingestion across multiple files and splits ((train/validation/test splits)
-
-- Robust data cleaning (handling missing values, type coercion, and normalization)
-
-- KNN imputation for sparse numerical features (e.g., runtime, votes)
-
-## Feature Engineering
-
-- Director/Writer Metrics: Expertise and top-10 flags based on genre history
-
-- Text Features: Title embeddings (MiniLM), length, and keyword flags
-
-- Temporal Features: Movie age, seasonal trends, yearly distribution
-
-- Sentiment: Polarity & subjectivity from overview and tagline
-
-- Genre Encoding: One-hot, weighted, PCA-reduced
-
-## Modeling
-
-- XGBoost and RandomForest models, optimized with Optuna
-
-- Feature scaling using StandardScaler
-
-- Hyperparameter tuning with Grid Search
-
-## Performance
-
-- Validation Accuracy: 80.0%
-
-Outperforms random and baseline models
